@@ -66,7 +66,7 @@ if (APPLE)
     set_source_files_properties(${glfw_SOURCES} PROPERTIES LANGUAGE C)
 endif()
 
-add_library(glfw ${glfw_SOURCES} ${glfw_HEADERS})
+add_library(glfw SHARED ${glfw_SOURCES} ${glfw_HEADERS})
 set_target_properties(glfw PROPERTIES
                       OUTPUT_NAME ${GLFW_LIB_NAME}
                       VERSION ${GLFW_VERSION}
@@ -95,7 +95,7 @@ target_compile_options(glfw PRIVATE
                        "$<$<C_COMPILER_ID:Clang>:-Wall>"
                        "$<$<C_COMPILER_ID:GNU>:-Wall>")
 
-if (BUILD_SHARED_LIBS)
+if (GLFW_BUILD_SHARED_LIBS)
     if (WIN32)
         if (MINGW)
             # Remove the lib prefix on the DLL (but not the import library
